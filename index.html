@@ -13,11 +13,21 @@
             --brand-dark: #1e3a8a;
             --brand-light: #f0f7ff;
         }
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth; 
+            background-color: #020205; 
+        }
         
-        .hero-bg {
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), 
-                        url('20210607_Top_Background_Blue_CDPM.jpg') center/cover no-repeat;
+        #electrical-grid-canvas { 
+            display: block; 
+            width: 100vw; 
+            height: 100vh; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            z-index: -1; 
+            pointer-events: none; 
         }
 
         .services-strip {
@@ -43,84 +53,348 @@
         .bg-brand { background-color: var(--brand-main); }
         .border-brand { border-color: var(--brand-main); }
         
-        /* Honeypot anti-spam */
         .hp-field { display: none; }
+
+        /* Estilos para diagramas técnicos HTML */
+        .tech-flow-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(70, 122, 207, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+        .tech-flow-box:hover {
+            border-color: rgba(70, 122, 207, 0.8);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-900">
+<body class="text-white">
 
-    <nav class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <canvas id="electrical-grid-canvas"></canvas>
+
+    <nav class="bg-white/75 backdrop-blur-md border-b border-slate-200/60 sticky top-0 z-50 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-20 items-center">
             <div class="flex items-center">
-                <img src="20210607-CDPM-Logo_ColorHorizont.png" alt="CDPM Logo" class="h-14 w-auto drop-shadow-sm transform transition hover:scale-105">
+                <img src="20210607-CDPM-Logo_ColorHorizont.png" alt="CDPM Logo" class="h-14 w-auto transform transition hover:scale-105">
             </div>
             
             <div class="hidden md:flex items-center space-x-8 text-sm font-semibold uppercase tracking-wider">
-                <a href="#nosotros" class="hover:text-[#467acf] transition">Nosotros</a>
-                <a href="#servicios" class="hover:text-[#467acf] transition">Servicios</a>
+                <a href="#nosotros" class="text-slate-700 hover:text-[#467acf] transition">Nosotros</a>
+                <a href="#servicios" class="text-slate-700 hover:text-[#467acf] transition">Servicios</a>
+                <a href="#experiencia" class="text-slate-700 hover:text-[#467acf] transition">Experiencia</a>
+                <a href="#clientes" class="text-slate-700 hover:text-[#467acf] transition">Clientes</a>
                 <a href="#contacto" class="bg-[#467acf] text-white px-5 py-2.5 rounded shadow-lg hover:bg-[#355ea3] transition">Contacto</a>
-                <div class="flex space-x-4 border-l pl-6 border-slate-300">
-                    <a href="https://web.facebook.com/cydpm" target="_blank" class="text-slate-400 hover:text-[#467acf] transition text-lg"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.linkedin.com/in/consulting-development-project-management-1535bb351/" target="_blank" class="text-slate-400 hover:text-[#467acf] transition text-lg"><i class="fab fa-linkedin-in"></i></a>
+                <div class="flex space-x-4 border-l pl-6 border-slate-200">
+                    <a href="https://web.facebook.com/cydpm" target="_blank" class="text-slate-600 hover:text-[#467acf] transition text-lg"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.linkedin.com/in/consulting-development-project-management-1535bb351/" target="_blank" class="text-slate-600 hover:text-[#467acf] transition text-lg"><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <header class="hero-bg text-white py-24 md:py-32">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                Consultoría, Desarrollo <br> y Gestión de Proyectos.
+    <header class="bg-transparent py-24 md:py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left relative z-10">
+            <span class="text-[#467acf] font-bold tracking-widest uppercase mb-2 block">Consultoría Especializada</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-white drop-shadow-md">
+                Integración Tecnológica <br> para el Sector Eléctrico.
             </h1>
-            <p class="text-xl text-slate-300 max-w-2xl mb-10 leading-relaxed">
-                Expertos multidisciplinarios en infraestructura crítica, levantamiento GIS y arquitectura de software para el sector energía y minería.
+            <p class="text-xl text-slate-300 max-w-2xl mb-10 leading-relaxed drop-shadow">
+                Soluciones integrales en Gestión de Activos, Adopción NIIF, Integración ERP-SAP y Sistemas GIS Comerciales, impulsando a las principales distribuidoras del país.
             </p>
             <div class="flex flex-col md:flex-row gap-4 justify-center md:justify-start">
-                <a href="#servicios" class="bg-[#467acf] text-white px-8 py-4 rounded font-bold shadow-xl hover:bg-[#355ea3] transition text-center">Nuestras Soluciones</a>
-                <a href="#contacto" class="bg-white/10 backdrop-blur-md border border-white/30 px-8 py-4 rounded font-bold hover:bg-white/20 transition text-center">Solicitar Consultoría</a>
+                <a href="#servicios" class="bg-[#467acf] text-white px-8 py-4 rounded font-bold shadow-xl hover:bg-[#355ea3] transition text-center">Explorar Pilares</a>
+                <a href="#contacto" class="bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 rounded font-bold hover:bg-white/20 transition text-center">Solicitar Consultoría</a>
             </div>
         </div>
     </header>
 
-    <section id="servicios" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold mb-4">Especialización de Alto Nivel</h2>
-            <div class="h-1.5 w-24 bg-[#467acf] mx-auto"></div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 transition hover:shadow-xl hover:-translate-y-1">
-                <div class="text-[#467acf] text-3xl mb-4"><i class="fas fa-layer-group"></i></div>
-                <h3 class="text-xl font-bold mb-4 text-slate-800 uppercase tracking-tight">Ingeniería & GIS</h3>
-                <p class="text-slate-600 leading-relaxed">Levantamiento y actualización de redes de distribución (BT-MT) en plataformas ArcGIS, QGIS y SmallWorld.</p>
+    <section id="nosotros" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-white border-l-4 border-[#467acf] pl-4">Garantía de Excelencia</h2>
+                <p class="text-slate-300 leading-relaxed mb-6">
+                    Con más de 8 años ejecutando proyectos de alta complejidad, somos profesionales comprometidos con el rigor técnico y legal. Todos nuestros servicios a nivel nacional han sido finalizados exitosamente bajo los más estrictos términos de referencia del FONAFE y OSINERGMIN.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+                    <div class="bg-slate-900/60 p-4 rounded border border-slate-800 text-center">
+                        <i class="fas fa-check-circle text-3xl text-[#467acf] mb-2"></i>
+                        <h4 class="font-bold text-sm text-white">100% Conformidad</h4>
+                        <p class="text-xs text-slate-400 mt-1">Aprobación total por áreas usuarias y gerencias.</p>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded border border-slate-800 text-center">
+                        <i class="fas fa-shield-alt text-3xl text-[#467acf] mb-2"></i>
+                        <h4 class="font-bold text-sm text-white">Cero Penalidades</h4>
+                        <p class="text-xs text-slate-400 mt-1">Ejecución impecable bajo la Ley de Contrataciones.</p>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded border border-slate-800 text-center">
+                        <i class="fas fa-university text-3xl text-[#467acf] mb-2"></i>
+                        <h4 class="font-bold text-sm text-white">Transparencia</h4>
+                        <p class="text-xs text-slate-400 mt-1">Pagos debidamente cancelados mediante sistema SPOT.</p>
+                    </div>
+                </div>
             </div>
-            <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 transition hover:shadow-xl hover:-translate-y-1">
-                <div class="text-[#467acf] text-3xl mb-4"><i class="fas fa-chart-line"></i></div>
-                <h3 class="text-xl font-bold mb-4 text-slate-800 uppercase tracking-tight">Gestión de Procesos</h3>
-                <p class="text-slate-600 leading-relaxed">Control de activo fijo, conciliación operativa y aplicación de NIIF-NIC bajo estándares internacionales.</p>
-            </div>
-            <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-100 transition hover:shadow-xl hover:-translate-y-1">
-                <div class="text-[#467acf] text-3xl mb-4"><i class="fas fa-network-wired"></i></div>
-                <h3 class="text-xl font-bold mb-4 text-slate-800 uppercase tracking-tight">Tecnología (TI)</h3>
-                <p class="text-slate-600 leading-relaxed">Arquitectura empresarial, migración ERP-SAP (LSMW, MC) y desarrollo de módulos a medida.</p>
+            
+            <div class="bg-slate-900/40 backdrop-blur-sm p-8 rounded-2xl border border-slate-800">
+                <h3 class="text-xl font-bold mb-6 text-center">Nuestra Metodología de Ejecución</h3>
+                <div class="relative">
+                    <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-[#467acf]/30"></div>
+                    <div class="space-y-6 relative">
+                        <div class="flex items-start pl-10 relative">
+                            <div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-[#467acf] shadow-[0_0_10px_#467acf]"></div>
+                            <div>
+                                <h4 class="font-bold text-[#467acf]">Fase 1: Diagnóstico</h4>
+                                <p class="text-sm text-slate-300">Análisis de bases de datos contables y tributarias; evaluación de políticas NIIF vigentes.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start pl-10 relative">
+                            <div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-[#467acf] shadow-[0_0_10px_#467acf]"></div>
+                            <div>
+                                <h4 class="font-bold text-[#467acf]">Fase 2: Campo y Desarrollo</h4>
+                                <p class="text-sm text-slate-300">Levantamiento georreferenciado; programación de unificheros e interfaces PI.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start pl-10 relative">
+                            <div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-[#467acf] shadow-[0_0_10px_#467acf]"></div>
+                            <div>
+                                <h4 class="font-bold text-[#467acf]">Fase 3: Validación</h4>
+                                <p class="text-sm text-slate-300">Trazabilidad ítem por ítem; pruebas de estrés en sistemas satélites.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start pl-10 relative">
+                            <div class="absolute left-[-5px] top-1 w-3 h-3 rounded-full bg-[#467acf] shadow-[0_0_10px_#467acf]"></div>
+                            <div>
+                                <h4 class="font-bold text-[#467acf]">Fase 4: Entregables</h4>
+                                <p class="text-sm text-slate-300">Certificación de conformidad; carga de datos al ERP-SAP; transferencia de conocimiento.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <div class="services-strip flex items-center justify-center border-y-8 border-[#467acf]/20">
+    <section id="servicios" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-slate-950/30">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4 text-white">Arquitectura de Soluciones</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Nuestro Enfoque Multidisciplinario basado en 4 pilares fundamentales para la excelencia operativa.</p>
+            <div class="h-1.5 w-24 bg-[#467acf] mx-auto mt-6"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-slate-900/70 backdrop-blur-md p-8 rounded-xl shadow-xl border border-slate-700/80 transition hover:border-[#467acf] hover:-translate-y-1 group">
+                <div class="text-[#467acf] text-4xl mb-4 group-hover:scale-110 transition"><i class="fas fa-balance-scale"></i></div>
+                <h3 class="text-lg font-bold mb-4 text-white uppercase tracking-tight">Pilar I:<br>Saneamiento y NIIF</h3>
+                <ul class="text-sm text-slate-300 space-y-3">
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i><strong>Componetización:</strong> Desagregación inventariable (NIC 16).</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i><strong>Trazabilidad:</strong> Conciliación de diferencias (NIC 12).</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i><strong>Test de Deterioro:</strong> Evaluación de UGE (NIC 36/2).</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i><strong>Diagnósticos:</strong> NIIF 9, 15 y 16.</li>
+                </ul>
+            </div>
+            
+            <div class="bg-slate-900/70 backdrop-blur-md p-8 rounded-xl shadow-xl border border-slate-700/80 transition hover:border-[#467acf] hover:-translate-y-1 group">
+                <div class="text-[#467acf] text-4xl mb-4 group-hover:scale-110 transition"><i class="fas fa-server"></i></div>
+                <h3 class="text-lg font-bold mb-4 text-white uppercase tracking-tight">Pilar II:<br>Integración ERP-SAP</h3>
+                <ul class="text-sm text-slate-300 space-y-3">
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Migración desde Sistemas Legados (ISCOM/SIELSE).</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Construcción de unificheros (LSMW).</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Interfaces Web Services & SAP PI.</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Integración con Proyecto MEGA.</li>
+                </ul>
+            </div>
+
+            <div class="bg-slate-900/70 backdrop-blur-md p-8 rounded-xl shadow-xl border border-slate-700/80 transition hover:border-[#467acf] hover:-translate-y-1 group">
+                <div class="text-[#467acf] text-4xl mb-4 group-hover:scale-110 transition"><i class="fas fa-map-marked-alt"></i></div>
+                <h3 class="text-lg font-bold mb-4 text-white uppercase tracking-tight">Pilar III:<br>Redes GIS y Comerciales</h3>
+                <ul class="text-sm text-slate-300 space-y-3">
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Actualización GE Smallworld Electric Office.</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Migración entre ISCOM, NGC y SIELSE.</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Identificación de Brechas Comerciales.</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Georreferenciación BT/MT.</li>
+                </ul>
+            </div>
+
+            <div class="bg-slate-900/70 backdrop-blur-md p-8 rounded-xl shadow-xl border border-slate-700/80 transition hover:border-[#467acf] hover:-translate-y-1 group">
+                <div class="text-[#467acf] text-4xl mb-4 group-hover:scale-110 transition"><i class="fas fa-hard-hat"></i></div>
+                <h3 class="text-lg font-bold mb-4 text-white uppercase tracking-tight">Pilar IV:<br>Ingeniería de Campo</h3>
+                <ul class="text-sm text-slate-300 space-y-3">
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Inventario físico eléctrico y no eléctrico.</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Conciliación de sobrantes y faltantes.</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Revisión de expedientes de obras.</li>
+                    <li><i class="fas fa-angle-right text-[#467acf] mr-2"></i>Cálculo de Tasación (VNR) y obsolescencia.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-16 bg-slate-900/50 p-8 rounded-2xl border border-slate-800">
+            <h3 class="text-xl font-bold mb-8 text-center text-white">Esquema de Migración e Integración ERP-SAP</h3>
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+                
+                <div class="flex-1 w-full tech-flow-box">
+                    <div class="text-[#467acf] mb-2"><i class="fas fa-database text-2xl"></i></div>
+                    <h4 class="font-bold text-white mb-2">Sistemas Origen</h4>
+                    <div class="text-xs text-slate-400 space-y-1">
+                        <p class="bg-slate-800/50 p-1 rounded">Sistemas Legados</p>
+                        <p class="bg-slate-800/50 p-1 rounded">ISCOM / SIELSE</p>
+                        <p class="bg-slate-800/50 p-1 rounded">Bases de Datos SQL</p>
+                    </div>
+                </div>
+
+                <div class="text-[#467acf] text-2xl rotate-90 lg:rotate-0"><i class="fas fa-angle-double-right"></i></div>
+
+                <div class="flex-1 w-full tech-flow-box border-[#467acf]/60 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[#467acf]/5"></div>
+                    <div class="text-[#467acf] mb-2 relative"><i class="fas fa-cogs text-3xl"></i></div>
+                    <h4 class="font-bold text-white mb-2 relative">Capa de Integración</h4>
+                    <div class="grid grid-cols-2 gap-2 text-xs text-slate-300 relative">
+                        <p class="bg-slate-800/80 p-2 rounded">Unificheros (LSMW)</p>
+                        <p class="bg-slate-800/80 p-2 rounded">Web Services</p>
+                        <p class="bg-slate-800/80 p-2 rounded">SAP PI</p>
+                        <p class="bg-slate-800/80 p-2 rounded">Base Intermedia</p>
+                    </div>
+                </div>
+
+                <div class="text-[#467acf] text-2xl rotate-90 lg:rotate-0"><i class="fas fa-angle-double-right"></i></div>
+
+                <div class="flex-1 w-full tech-flow-box">
+                    <div class="text-[#467acf] mb-2"><i class="fas fa-server text-2xl"></i></div>
+                    <h4 class="font-bold text-white mb-2">Sistemas Destino</h4>
+                    <div class="text-xs text-slate-400 space-y-1">
+                        <p class="bg-[#467acf] text-white font-bold p-2 rounded">ERP-SAP (Proyecto MEGA)</p>
+                        <p class="bg-slate-800/50 p-1 rounded mt-2">Control Patrimonial</p>
+                        <p class="bg-slate-800/50 p-1 rounded">Gestión de Viáticos</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-800/50">
+        <div class="grid lg:grid-cols-3 gap-10">
+            <div class="lg:col-span-1">
+                <h2 class="text-3xl font-bold mb-4 text-white border-l-4 border-[#467acf] pl-4">Caso de Éxito</h2>
+                <h3 class="text-xl text-[#467acf] font-semibold mb-4">Despliegue Tecnológico a Gran Escala</h3>
+                <p class="text-slate-300 mb-6 text-sm leading-relaxed">
+                    Ejecución integral en las regiones de Loreto, San Martín, Amazonas y Cajamarca para Electro Oriente y Electro Ucayali.
+                </p>
+                <div class="space-y-4">
+                    <div class="bg-slate-900/60 p-4 rounded border border-slate-800">
+                        <h4 class="font-bold text-white text-sm"><i class="fas fa-exchange-alt text-[#467acf] mr-2"></i> Migración Masiva</h4>
+                        <p class="text-xs text-slate-400 mt-1">Desde ISCOM/NGC hacia SIELSE asegurando el ciclo de facturación.</p>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded border border-slate-800">
+                        <h4 class="font-bold text-white text-sm"><i class="fas fa-satellite-dish text-[#467acf] mr-2"></i> Sinceramiento en Campo</h4>
+                        <p class="text-xs text-slate-400 mt-1">Validación de redes BT/MT integrando suministros a GE Smallworld.</p>
+                    </div>
+                    <div class="bg-slate-900/60 p-4 rounded border border-slate-800">
+                        <h4 class="font-bold text-white text-sm"><i class="fas fa-code text-[#467acf] mr-2"></i> Desarrollo .NET/SQL</h4>
+                        <p class="text-xs text-slate-400 mt-1">Módulos satélites integrados vía Web Services con SAP.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="bg-slate-900/40 backdrop-blur-sm p-6 rounded-2xl border border-slate-800 h-full">
+                    <h3 class="text-xl font-bold mb-6 text-white text-center">Matriz de Experiencia Comprobada</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-slate-300">
+                            <thead class="text-xs text-white uppercase bg-slate-800/80 border-b border-[#467acf]">
+                                <tr>
+                                    <th class="px-4 py-3 text-center">SEAL</th>
+                                    <th class="px-4 py-3 text-center">Electro Puno</th>
+                                    <th class="px-4 py-3 text-center">Electro Ucayali</th>
+                                    <th class="px-4 py-3 text-center">Electro Oriente</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-800/50">
+                                <tr>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Activos Fijos y Tasaciones</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Adopción NIIF</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Extracción de datos</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">GE Smallworld GIS</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Interfaces SAP</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Componetización</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Validación de Ficheros</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Migración ISCOM/SIELSE</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Diferencias (NIC 12)</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Carga ERP-SAP (MEGA)</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">Sistemas Satélites SAP</span></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block mb-1">NIC 36 (Deterioro)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block">Sobrantes/Faltantes</span></td>
+                                    <td class="px-4 py-3 text-center"></td>
+                                    <td class="px-4 py-3 text-center"></td>
+                                    <td class="px-4 py-3 text-center"><span class="bg-slate-800 px-2 py-1 rounded text-xs block">NIIF 9/15/16</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clientes" class="py-16 bg-slate-950/60 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-2xl font-bold mb-10 text-center text-white">Nuestros Principales Clientes</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-sm border border-slate-700 rounded-lg hover:bg-white/10 hover:border-[#467acf] transition group cursor-default">
+                    <i class="fas fa-bolt text-3xl text-slate-500 group-hover:text-[#467acf] mb-3 transition"></i>
+                    <span class="font-bold text-lg text-slate-200 text-center tracking-wide">SEAL</span>
+                    <span class="text-[10px] text-slate-400 text-center mt-1">Sociedad Eléctrica del Sur Oeste</span>
+                </div>
+                <div class="flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-sm border border-slate-700 rounded-lg hover:bg-white/10 hover:border-[#467acf] transition group cursor-default">
+                    <i class="fas fa-plug text-3xl text-slate-500 group-hover:text-[#467acf] mb-3 transition"></i>
+                    <span class="font-bold text-lg text-slate-200 text-center tracking-wide">Electro Puno</span>
+                    <span class="text-[10px] text-slate-400 text-center mt-1">S.A.A.</span>
+                </div>
+                <div class="flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-sm border border-slate-700 rounded-lg hover:bg-white/10 hover:border-[#467acf] transition group cursor-default">
+                    <i class="fas fa-network-wired text-3xl text-slate-500 group-hover:text-[#467acf] mb-3 transition"></i>
+                    <span class="font-bold text-lg text-slate-200 text-center tracking-wide">Electro Ucayali</span>
+                    <span class="text-[10px] text-slate-400 text-center mt-1">S.A.</span>
+                </div>
+                <div class="flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-sm border border-slate-700 rounded-lg hover:bg-white/10 hover:border-[#467acf] transition group cursor-default">
+                    <i class="fas fa-broadcast-tower text-3xl text-slate-500 group-hover:text-[#467acf] mb-3 transition"></i>
+                    <span class="font-bold text-lg text-slate-200 text-center tracking-wide">Electro Oriente</span>
+                    <span class="text-[10px] text-slate-400 text-center mt-1">S.A.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="services-strip flex items-center justify-center border-y-4 border-[#467acf]/30">
         <div class="services-image"></div>
-        <div class="absolute inset-0 bg-brand/10 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-[#467acf]/10 pointer-events-none"></div>
     </div>
 
-    <section id="contacto" class="py-20 bg-slate-100">
+    <section id="contacto" class="py-20 bg-transparent">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-5 border border-slate-200">
-                <div class="md:col-span-2 bg-[#467acf] p-10 text-white">
-                    <h3 class="text-2xl font-bold mb-6">Contacto Directo</h3>
-                    <p class="mb-8 text-blue-100">Inicie un análisis de requerimientos con nuestro equipo senior.</p>
-                    <div class="space-y-4">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-white mb-4">Impulse la transformación operativa de su empresa.</h2>
+            </div>
+            <div class="bg-slate-900/60 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden grid md:grid-cols-5 border border-slate-800/80">
+                <div class="md:col-span-2 bg-[#467acf] p-10 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Contacto Directo</h3>
+                        <p class="mb-8 text-blue-100">Inicie un análisis de requerimientos con nuestro equipo senior.</p>
+                    </div>
+                    <div class="space-y-4 text-sm text-blue-50">
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-envelope"></i>
                             <span>Atención vía Formulario Web</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Atención Telefónica</span>
                         </div>
                         <div class="flex items-center space-x-3">
                             <i class="fas fa-map-marker-alt"></i>
@@ -129,7 +403,7 @@
                     </div>
                 </div>
 
-                <div class="md:col-span-3 p-10">
+                <div class="md:col-span-3 p-10 bg-slate-950/40">
                     <form action="https://formsubmit.co/cyd.projectmanagement@gmail.com" method="POST" id="mainForm">
                         <input type="hidden" name="_next" value="https://codeproma.vercel.app/"> 
                         <input type="hidden" name="_captcha" value="false">
@@ -140,23 +414,23 @@
                             </div>
                             
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Tipo de Persona</label>
-                                <select name="tipo_persona" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#467acf] outline-none">
+                                <label class="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-wide">Tipo de Persona</label>
+                                <select name="tipo_persona" class="w-full bg-slate-900/80 border border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#467acf] outline-none text-white">
                                     <option value="juridica">Persona Jurídica (Empresa)</option>
                                     <option value="natural">Persona Natural</option>
                                 </select>
                             </div>
 
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Correo Corporativo / Personal</label>
-                                <input type="email" name="email" required placeholder="ejemplo@dominio.com" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#467acf] outline-none">
+                                <label class="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-wide">Correo Corporativo / Personal</label>
+                                <input type="email" name="email" required placeholder="ejemplo@dominio.com" class="w-full bg-slate-900/80 border border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#467acf] outline-none text-white placeholder-slate-500">
                             </div>
 
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wide">Mensaje del Proyecto</label>
-                                <textarea name="mensaje" id="msgInput" maxlength="500" rows="4" required placeholder="Describa brevemente su requerimiento..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#467acf] outline-none resize-none"></textarea>
+                                <label class="block text-sm font-bold text-slate-300 mb-2 uppercase tracking-wide">Mensaje del Proyecto</label>
+                                <textarea name="mensaje" id="msgInput" maxlength="500" rows="4" required placeholder="Describa brevemente su requerimiento..." class="w-full bg-slate-900/80 border border-slate-800 rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#467acf] outline-none text-white placeholder-slate-500 resize-none"></textarea>
                                 <div class="flex justify-between mt-2">
-                                    <span class="text-xs text-slate-400">Máximo 500 caracteres</span>
+                                    <span class="text-xs text-slate-500">Máximo 500 caracteres</span>
                                     <span id="charCount" class="text-xs font-bold text-[#467acf]">0/500</span>
                                 </div>
                             </div>
@@ -171,16 +445,15 @@
         </div>
     </section>
 
-    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+    <footer class="bg-slate-950/80 border-t border-slate-900 py-12">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <img src="20210607-CDPM-Logo_ColorHorizont.png" alt="Logo" class="h-8 mx-auto mb-6 grayscale opacity-50">
-            <p class="text-sm">© 2026 Consulting & Development Project Management S.A.C.</p>
+            <img src="20210607-CDPM-Logo_BackBlackMonocHorizont.png" alt="Logo Consulting & Development Project Management S.A.C." class="h-8 mx-auto mb-6 grayscale opacity-40">
+            <p class="text-sm text-slate-500">© 2026 Consulting & Development Project Management S.A.C.</p>
             <p class="text-xs mt-2 uppercase tracking-widest text-slate-600">Eficiencia · Precisión · Innovación</p>
         </div>
     </footer>
 
     <script>
-        // Mitigación de SPOF
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }
@@ -202,6 +475,386 @@
                 alert('Bot detectado.');
             }
         });
+    </script>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.162.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.162.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+        const gridColors = [
+            new THREE.Color(0xffb703), // L0: Generación
+            new THREE.Color(0x00f5d4), // L1: Alta Tensión
+            new THREE.Color(0xf15bb5), // L2: SUBESTACIONES
+            new THREE.Color(0x00bbf9), // L3: Media Tensión
+            new THREE.Color(0x4361ee)  // L4: Baja Tensión
+        ];
+
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0x020205, 0.003);
+        
+        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 15, 45); 
+        
+        const canvasElement = document.getElementById('electrical-grid-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas: canvasElement, antialias: true, powerPreference: "high-performance" });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x020205);
+        renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+        // TOPOGRAFÍA: REJILLA DE MONTAÑAS
+        const terrainGeo = new THREE.PlaneGeometry(300, 300, 60, 60);
+        terrainGeo.rotateX(-Math.PI / 2);
+        const vertices = terrainGeo.attributes.position.array;
+        
+        for (let i = 0; i < vertices.length; i += 3) {
+            const x = vertices[i];
+            const z = vertices[i + 2];
+            let y = Math.sin(x * 0.03) * Math.cos(z * 0.03) * 12;
+            y += Math.sin(x * 0.015 + z * 0.01) * 18;             
+            vertices[i + 1] = y - 25; 
+        }
+        terrainGeo.computeVertexNormals();
+
+        const terrainMat = new THREE.MeshBasicMaterial({
+            color: 0x12539D, 
+            wireframe: true,
+            transparent: true,
+            opacity: 0.12 
+        });
+        const terrainMesh = new THREE.Mesh(terrainGeo, terrainMat);
+        scene.add(terrainMesh);
+
+        function createStaticField() {
+            const count = 4000;
+            const positions = []; const colors = []; const sizes = [];
+            for (let i = 0; i < count; i++) {
+                const r = THREE.MathUtils.randFloat(50, 150);
+                const phi = Math.acos(THREE.MathUtils.randFloatSpread(2));
+                const theta = THREE.MathUtils.randFloat(0, Math.PI * 2);
+                positions.push(r * Math.sin(phi) * Math.cos(theta), r * Math.sin(phi) * Math.sin(theta), r * Math.cos(phi));
+                colors.push(0.5, 0.7, 1.0);
+                sizes.push(THREE.MathUtils.randFloat(0.1, 0.2));
+            }
+            const geo = new THREE.BufferGeometry();
+            geo.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+            geo.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+            geo.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+            const mat = new THREE.ShaderMaterial({
+                uniforms: { uTime: { value: 0 } },
+                vertexShader: `
+                    attribute float size; attribute vec3 color; varying vec3 vColor; uniform float uTime;
+                    void main() { vColor = color; vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                    float twinkle = sin(uTime * 1.0 + position.x * 50.0) * 0.3 + 0.7;
+                    gl_PointSize = size * twinkle * (300.0 / -mvPosition.z); gl_Position = projectionMatrix * mvPosition; }
+                `,
+                fragmentShader: `
+                    varying vec3 vColor; void main() { vec2 center = gl_PointCoord - 0.5;
+                    if (length(center) > 0.5) discard; gl_FragColor = vec4(vColor, 0.5); }
+                `,
+                transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+            });
+            return new THREE.Points(geo, mat);
+        }
+        const staticField = createStaticField(); scene.add(staticField);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true; controls.dampingFactor = 0.05;
+        controls.rotateSpeed = 0.4; controls.minDistance = 10; controls.maxDistance = 80;
+        controls.autoRotate = true; controls.autoRotateSpeed = 0.2; controls.enablePan = false;
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+        const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 2.0, 0.5, 0.6);
+        composer.addPass(bloomPass);
+        composer.addPass(new OutputPass());
+
+        const pulseUniforms = {
+            uTime: { value: 0.0 }, uPulsePositions: { value: [new THREE.Vector3(1e3, 1e3, 1e3)] },
+            uPulseTimes: { value: [-1e3] }, uPulseSpeed: { value: 30.0 }, uBaseNodeSize: { value: 0.8 }
+        };
+
+        const noiseFunctions = `
+        vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+        vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+        vec4 permute(vec4 x) { return mod289(((x * 34.0) + 1.0) * x); }
+        vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+        float snoise(vec3 v) {
+            const vec2 C = vec2(1.0/6.0, 1.0/3.0); const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+            vec3 i = floor(v + dot(v, C.yyy)); vec3 x0 = v - i + dot(i, C.xxx);
+            vec3 g = step(x0.yzx, x0.xyz); vec3 l = 1.0 - g;
+            vec3 i1 = min(g.xyz, l.zxy); vec3 i2 = max(g.xyz, l.zxy);
+            vec3 x1 = x0 - i1 + C.xxx; vec3 x2 = x0 - i2 + C.yyy; vec3 x3 = x0 - D.yyy;
+            i = mod289(i);
+            vec4 p = permute(permute(permute(i.z + vec4(0.0, i1.z, i2.z, 1.0)) + i.y + vec4(0.0, i1.y, i2.y, 1.0)) + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+            float n_ = 0.142857142857; vec3 ns = n_ * D.wyz - D.xzx;
+            vec4 j = p - 49.0 * floor(p * ns.z * ns.z); vec4 x_ = floor(j * ns.z); vec4 y_ = floor(j - 7.0 * x_);
+            vec4 x = x_ * ns.x + ns.yyyy; vec4 y = y_ * ns.x + ns.yyyy; vec4 h = 1.0 - abs(x) - abs(y);
+            vec4 b0 = vec4(x.xy, y.xy); vec4 b1 = vec4(x.zw, y.zw);
+            vec4 s0 = floor(b0) * 2.0 + 1.0; vec4 s1 = floor(b1) * 2.0 + 1.0; vec4 sh = -step(h, vec4(0.0));
+            vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy; vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+            vec3 p0 = vec3(a0.xy, h.x); vec3 p1 = vec3(a0.zw, h.y); vec3 p2 = vec3(a1.xy, h.z); vec3 p3 = vec3(a1.zw, h.w);
+            vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+            p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+            vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0); m = m * m;
+            return 42.0 * dot(m * m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+        }`;
+
+        const nodeShader = {
+            vertexShader: `${noiseFunctions}
+            attribute float nodeSize; attribute vec3 nodeColor; attribute float distanceFromRoot;
+            uniform float uTime; uniform vec3 uPulsePositions[1]; uniform float uPulseTimes[1];
+            uniform float uPulseSpeed; uniform float uBaseNodeSize;
+            varying vec3 vColor; varying float vPulseIntensity;
+            
+            void main() {
+                vColor = nodeColor; vec3 worldPos = (modelMatrix * vec4(position, 1.0)).xyz;
+                float timeSinceClick = uTime - uPulseTimes[0]; float pulseRadius = timeSinceClick * uPulseSpeed;
+                float distToClick = distance(worldPos, uPulsePositions[0]);
+                vPulseIntensity = smoothstep(5.0, 0.0, abs(distToClick - pulseRadius)) * smoothstep(3.0, 0.0, timeSinceClick);
+                
+                float baseSize = nodeSize * (sin(uTime * 1.5 + distanceFromRoot * 0.2) * 0.1 + 0.9);
+                float finalSize = baseSize * (1.0 + vPulseIntensity * 2.0);
+                
+                vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                gl_PointSize = finalSize * uBaseNodeSize * (1000.0 / -mvPosition.z);
+                gl_Position = projectionMatrix * mvPosition;
+            }`,
+            fragmentShader: `
+            uniform float uTime; varying vec3 vColor; varying float vPulseIntensity;
+            void main() {
+                vec2 center = 2.0 * gl_PointCoord - 1.0; float dist = length(center);
+                if (dist > 1.0) discard;
+                
+                float glow = 1.0 - smoothstep(0.0, 0.8, dist);
+                vec3 finalColor = vColor;
+                if (vPulseIntensity > 0.0) { finalColor = mix(vColor, vec3(1.0), vPulseIntensity); glow *= (1.0 + vPulseIntensity); }
+                
+                float core = smoothstep(0.3, 0.0, dist); finalColor += vec3(1.0) * core * 0.5;
+                gl_FragColor = vec4(finalColor, glow * 0.9);
+            }`
+        };
+
+        const connectionShader = {
+            vertexShader: `${noiseFunctions}
+            attribute vec3 startPoint; attribute vec3 endPoint; attribute float pathIndex; attribute vec3 connectionColor;
+            uniform float uTime; uniform vec3 uPulsePositions[1]; uniform float uPulseTimes[1]; uniform float uPulseSpeed;
+            varying vec3 vColor; varying float vPulseIntensity; varying float vPathPosition;
+            
+            void main() {
+                float t = position.x; vPathPosition = t; vec3 finalPos = mix(startPoint, endPoint, t);
+                vec3 perpendicular = normalize(cross(normalize(endPoint - startPoint), vec3(0.0, 1.0, 0.0)));
+                if (length(perpendicular) < 0.1) perpendicular = vec3(1.0, 0.0, 0.0);
+                float noise = snoise(vec3(pathIndex * 0.1, t * 2.0, uTime * 2.0));
+                finalPos += perpendicular * noise * 0.1; 
+                
+                vec3 worldPos = (modelMatrix * vec4(finalPos, 1.0)).xyz;
+                float timeSinceClick = uTime - uPulseTimes[0]; float pulseRadius = timeSinceClick * uPulseSpeed;
+                float distToClick = distance(worldPos, uPulsePositions[0]);
+                vPulseIntensity = smoothstep(4.0, 0.0, abs(distToClick - pulseRadius)) * smoothstep(3.0, 0.0, timeSinceClick);
+                
+                vColor = connectionColor; gl_Position = projectionMatrix * modelViewMatrix * vec4(finalPos, 1.0);
+            }`,
+            fragmentShader: `
+            uniform float uTime; varying vec3 vColor; varying float vPulseIntensity; varying float vPathPosition;
+            void main() {
+                float flow = sin(vPathPosition * 20.0 - uTime * 15.0) * 0.5 + 0.5;
+                vec3 finalColor = vColor * (0.5 + flow * 0.5);
+                if (vPulseIntensity > 0.0) { finalColor = mix(finalColor, vec3(1.0), vPulseIntensity); }
+                float alpha = 0.3 + flow * 0.4 + vPulseIntensity;
+                gl_FragColor = vec4(finalColor, min(alpha, 1.0));
+            }`
+        };
+
+        class Node {
+            constructor(position, level = 0) {
+                this.position = position; this.connections = []; this.level = level;
+                this.size = level === 0 ? 4.5 : level === 1 ? 1.5 : level === 2 ? 3.5 : level === 3 ? 1.2 : 0.5;
+                this.distanceFromRoot = 0;
+            }
+            addConnection(node) { if (!this.connections.includes(node)) { this.connections.push(node); node.connections.push(this); } }
+        }
+
+        function generateElectricalGrid() {
+            let nodes = [];
+            let rootNode = new Node(new THREE.Vector3(0, 0, 0), 0); 
+            nodes.push(rootNode);
+
+            const numSubstations = 6; 
+            
+            for(let i = 0; i < numSubstations; i++) {
+                const angle = (i / numSubstations) * Math.PI * 2 + (Math.random() * 0.5);
+                const distance = 25 + Math.random() * 10;
+                const subPos = new THREE.Vector3(Math.cos(angle) * distance, (Math.random() - 0.5) * 8, Math.sin(angle) * distance);
+                
+                let prevNode = rootNode;
+                const stepsAT = 3; 
+                
+                for(let j = 1; j <= stepsAT; j++) {
+                    const isSubstation = (j === stepsAT);
+                    const level = isSubstation ? 2 : 1; 
+                    const pos = new THREE.Vector3().copy(rootNode.position).lerp(subPos, j / stepsAT);
+                    
+                    if(!isSubstation) pos.add(new THREE.Vector3((Math.random()-0.5)*3, (Math.random()-0.5)*3, (Math.random()-0.5)*3));
+                    
+                    const newNode = new Node(pos, level);
+                    newNode.distanceFromRoot = rootNode.position.distanceTo(pos);
+                    nodes.push(newNode);
+                    prevNode.addConnection(newNode);
+                    prevNode = newNode;
+                    
+                    if(isSubstation) {
+                        const numMT = 3 + Math.floor(Math.random() * 3); 
+                        for(let k = 0; k < numMT; k++) {
+                            const mtAngle = angle + (Math.random() - 0.5) * 2.5;
+                            const mtDist = 8 + Math.random() * 6;
+                            const mtPos = new THREE.Vector3().copy(pos).add(new THREE.Vector3(Math.cos(mtAngle)*mtDist, (Math.random()-0.5)*4, Math.sin(mtAngle)*mtDist));
+                            
+                            const mtNode = new Node(mtPos, 3); 
+                            mtNode.distanceFromRoot = rootNode.position.distanceTo(mtPos);
+                            nodes.push(mtNode);
+                            newNode.addConnection(mtNode);
+                            
+                            const numBT = 6 + Math.floor(Math.random() * 8); 
+                            for(let l = 0; l < numBT; l++) {
+                                const btPos = new THREE.Vector3().copy(mtPos).add(new THREE.Vector3((Math.random()-0.5)*7, (Math.random()-0.5)*7, (Math.random()-0.5)*7));
+                                const btNode = new Node(btPos, 4); 
+                                btNode.distanceFromRoot = rootNode.position.distanceTo(btPos);
+                                nodes.push(btNode);
+                                mtNode.addConnection(btNode);
+                            }
+                        }
+                    }
+                }
+            }
+
+            const mtNodes = nodes.filter(n => n.level === 3);
+            for (let node of mtNodes) {
+                if (Math.random() < 0.4) {
+                    const nearby = mtNodes.filter(n => n !== node && n.position.distanceTo(node.position) < 10);
+                    if (nearby.length > 0) node.addConnection(nearby[0]);
+                }
+            }
+            return nodes;
+        }
+
+        let nodesMesh, connectionsMesh;
+
+        function initGrid() {
+            const networkNodes = generateElectricalGrid();
+            const nodePositions = []; const nodeSizes = []; const nodeColors = []; const distances = [];
+            
+            networkNodes.forEach(node => {
+                nodePositions.push(node.position.x, node.position.y, node.position.z);
+                nodeSizes.push(node.size); distances.push(node.distanceFromRoot);
+                const baseColor = gridColors[Math.min(node.level, 4)];
+                nodeColors.push(baseColor.r, baseColor.g, baseColor.b);
+            });
+
+            const nodesGeo = new THREE.BufferGeometry();
+            nodesGeo.setAttribute('position', new THREE.Float32BufferAttribute(nodePositions, 3));
+            nodesGeo.setAttribute('nodeSize', new THREE.Float32BufferAttribute(nodeSizes, 1));
+            nodesGeo.setAttribute('nodeColor', new THREE.Float32BufferAttribute(nodeColors, 3));
+            nodesGeo.setAttribute('distanceFromRoot', new THREE.Float32BufferAttribute(distances, 1));
+
+            const nodesMat = new THREE.ShaderMaterial({
+                uniforms: THREE.UniformsUtils.clone(pulseUniforms),
+                vertexShader: nodeShader.vertexShader, fragmentShader: nodeShader.fragmentShader,
+                transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+            });
+            nodesMesh = new THREE.Points(nodesGeo, nodesMat); scene.add(nodesMesh);
+
+            const connPositions = []; const startPoints = []; const endPoints = [];
+            const pathIndices = []; const connColors = []; const processed = new Set();
+            let pathIdx = 0;
+
+            networkNodes.forEach((node, i) => {
+                node.connections.forEach(connectedNode => {
+                    const j = networkNodes.indexOf(connectedNode);
+                    const key = i < j ? `${i}-${j}` : `${j}-${i}`;
+                    
+                    if (!processed.has(key)) {
+                        processed.add(key);
+                        const linkLevel = Math.min(node.level, connectedNode.level); 
+                        const cColor = gridColors[Math.min(linkLevel, 4)];
+
+                        for (let k = 0; k < 20; k++) {
+                            connPositions.push(k / 19, 0, 0);
+                            startPoints.push(node.position.x, node.position.y, node.position.z);
+                            endPoints.push(connectedNode.position.x, connectedNode.position.y, connectedNode.position.z);
+                            pathIndices.push(pathIdx); connColors.push(cColor.r, cColor.g, cColor.b);
+                        }
+                        pathIdx++;
+                    }
+                });
+            });
+
+            const connGeo = new THREE.BufferGeometry();
+            connGeo.setAttribute('position', new THREE.Float32BufferAttribute(connPositions, 3));
+            connGeo.setAttribute('startPoint', new THREE.Float32BufferAttribute(startPoints, 3));
+            connGeo.setAttribute('endPoint', new THREE.Float32BufferAttribute(endPoints, 3));
+            connGeo.setAttribute('pathIndex', new THREE.Float32BufferAttribute(pathIndices, 1));
+            connGeo.setAttribute('connectionColor', new THREE.Float32BufferAttribute(connColors, 3));
+
+            const connMat = new THREE.ShaderMaterial({
+                uniforms: THREE.UniformsUtils.clone(pulseUniforms),
+                vertexShader: connectionShader.vertexShader, fragmentShader: connectionShader.fragmentShader,
+                transparent: true, depthWrite: false, blending: THREE.AdditiveBlending
+            });
+            connectionsMesh = new THREE.LineSegments(connGeo, connMat); scene.add(connectionsMesh);
+        }
+
+        const raycaster = new THREE.Raycaster(); const pointer = new THREE.Vector2();
+        const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); const intersectPoint = new THREE.Vector3();
+
+        window.addEventListener('click', (e) => {
+            pointer.x = (e.clientX / window.innerWidth) * 2 - 1; pointer.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(pointer, camera);
+            plane.normal.copy(camera.position).normalize();
+            plane.constant = -plane.normal.dot(camera.position) + camera.position.length() * 0.5;
+            
+            if (raycaster.ray.intersectPlane(plane, intersectPoint)) {
+                const time = clock.getElapsedTime();
+                nodesMesh.material.uniforms.uPulsePositions.value[0].copy(intersectPoint);
+                nodesMesh.material.uniforms.uPulseTimes.value[0] = time;
+                connectionsMesh.material.uniforms.uPulsePositions.value[0].copy(intersectPoint);
+                connectionsMesh.material.uniforms.uPulseTimes.value[0] = time;
+            }
+        });
+
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate); const t = clock.getElapsedTime();
+            if (nodesMesh && connectionsMesh) {
+                nodesMesh.material.uniforms.uTime.value = t; connectionsMesh.material.uniforms.uTime.value = t;
+                nodesMesh.position.y = Math.sin(t * 0.5) * 0.5; connectionsMesh.position.y = Math.sin(t * 0.5) * 0.5;
+            }
+            
+            terrainMesh.position.y = Math.sin(t * 0.4) * 1.5;
+            
+            staticField.rotation.y += 0.0001; staticField.material.uniforms.uTime.value = t;
+            controls.update(); composer.render();
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight); composer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        initGrid(); animate();
     </script>
 </body>
 </html>
